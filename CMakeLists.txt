@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.15)
 project(Aunteater VERSION "${BUILD_VERSION}")
 
 # Setup cmake helpers in 'cmake' submodule
-include ("cmake/include.cmake")
+include(cmake/include.cmake)
 
 
 ##
@@ -13,9 +13,11 @@ include ("cmake/include.cmake")
 ##
 
 # Common build settings
-if(NOT CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 17)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    set(LINK_OPTIONS "/INCREMENTAL:NO")
 endif()
 
 if(NOT CMAKE_CXX_EXTENSIONS)
